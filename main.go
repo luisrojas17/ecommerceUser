@@ -20,6 +20,11 @@ func main() {
 
 }
 
+/*
+This function is executed when a new user is registered in AWS Cognito.
+The user wil be inserted into Mysql database after the user confirm email registration
+sent by Cognito.
+*/
 func Execute(ctx context.Context, event events.CognitoEventUserPoolsPostConfirmation) (events.CognitoEventUserPoolsPostConfirmation, error) {
 
 	// Init AWS configuration for lambda
