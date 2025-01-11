@@ -8,12 +8,19 @@ To create a Go module:
 - **go mod init github.com/luisrojas17/ecommerceUser
 
 To get AWS SDK for this lambda:
-- ** go get github.com/aws/aws-lambda-go/lambda
-- ** go get github.com/aws/aws-lambda-go/events
-- ** go get github.com/aws/aws-sdk-go-v2/aws
-- ** go get github.com/aws/aws-sdk-go-v2/config
-- ** github.com/aws/aws-sdk-go-v2/service/secretsmanager
-- ** go get github.com/go-sql-driver/mysql
+- **go get github.com/aws/aws-lambda-go/lambda
+- **go get github.com/aws/aws-lambda-go/events
+- **go get github.com/aws/aws-sdk-go-v2/aws
+- **go get github.com/aws/aws-sdk-go-v2/config
+- **github.com/aws/aws-sdk-go-v2/service/secretsmanager
+- **go get github.com/go-sql-driver/mysql
+
+## Compilation
+This project has to be compiled in linux format since AWS lambda runtime for Go only 
+recognize lambda Linux executable. so you have to set next environment variables:
+
+- set GOOS=linux
+- set GOARCH=amd64
 
 ## Dependencies
 This project has next AWS dependencies: 
