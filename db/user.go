@@ -22,15 +22,13 @@ func Create(user models.User) error {
 	defer Close()
 
 	statement := "INSERT INTO users (User_Email, User_UUID, User_DateAdd) VALUES ('" + user.Email + "', '" + user.Uuid + "', '" + helper.GetDate() + "')"
-	fmt.Println(statement)
 
-	_, err = Connection.Exec(statement)
+	err = Execute(statement)
 	if err != nil {
-		fmt.Println("It was an error to insert user.", err.Error())
 		return err
 	}
 
-	fmt.Println("User insert was made it database.")
+	fmt.Println("User was inserted in database.")
 
 	return nil
 }

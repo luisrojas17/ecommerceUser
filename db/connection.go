@@ -11,17 +11,9 @@ import (
 	"github.com/luisrojas17/ecommerceuser/models"
 )
 
-//var secretModel models.Secret
-//var err error
-
+// It is defined this variable like pointer to set available this variable for all application
+// in a better way.
 var Connection *sql.DB
-
-/*func GetSecret() error {
-
-	secretModel, err = aws.GetSecret(os.Getenv("SecretName"))
-
-	return err
-}*/
 
 func Connect() error {
 	secretModel, err := aws.GetSecret(os.Getenv("SecretName"))
@@ -32,7 +24,7 @@ func Connect() error {
 		return err
 	}
 
-	Connection, err := sql.Open("mysql", buildConnectionString(secretModel))
+	Connection, err = sql.Open("mysql", buildConnectionString(secretModel))
 
 	if err != nil {
 		fmt.Println("It was an error when the application tried to connect to database.", err.Error())
@@ -58,6 +50,20 @@ func Close() {
 	fmt.Println("Connection was closed.")
 }
 
+func Execute(statement string) error {
+
+	fmt.Println(statement)
+
+	_, err := Connection.Exec(statement)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+
+}
+
 func buildConnectionString(secret models.Secret) string {
 	var user, pass, dbEndpoint, dbName string
 
@@ -66,7 +72,8 @@ func buildConnectionString(secret models.Secret) string {
 	dbEndpoint = secret.Host
 	dbName = "ecommerce_db"
 
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPassword=true", user, pass, dbEndpoint, dbName)
+	//connectionString := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPassword=true", user, pass, dbEndpoint, dbName)
+	connectionString := fmt.Sprintf("%s:%s@tcp(%s)/%s", user, pass, dbEndpoint, dbName)
 
 	fmt.Println("Connection string is: ", connectionString)
 

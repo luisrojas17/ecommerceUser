@@ -15,13 +15,6 @@ To get AWS SDK for this lambda:
 - **github.com/aws/aws-sdk-go-v2/service/secretsmanager
 - **go get github.com/go-sql-driver/mysql
 
-## Compilation
-This project has to be compiled in linux format since AWS lambda runtime for Go only 
-recognize lambda Linux executable. so you have to set next environment variables:
-
-- set GOOS=linux
-- set GOARCH=amd64
-
 ## Dependencies
 This project has next AWS dependencies: 
 
@@ -30,3 +23,18 @@ This project has next AWS dependencies:
 - You have to create an schema with its tables for database. Load the script:
     ./db/ecommerceSchema.sql
 - You have to create a secret in AWS Secrete Manager to store the database credentials.
+
+## Compilation
+This project has to be compiled in linux format since AWS lambda runtime for Go only 
+recognize lambda Linux executable. so you have to set next environment variables:
+
+- set GOOS=linux
+- set GOARCH=amd64
+
+See the script "compile.bat"
+
+After you load the code zip file you have to add an environment varirable:
+
+- SecretName=ecommerce_secret
+
+Add trigger 

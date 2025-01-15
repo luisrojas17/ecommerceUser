@@ -4,8 +4,10 @@ echo "Starting to set environment variables..."
 set GOOS=linux
 set GOARCH=amd64
 
-go build main.go
+del bootstrap
+go build -o bootstrap main.go
 del main.zip
-tar.exe -a -cf main.zip main
+
+tar.exe -a -cf main.zip bootstrap
 
 echo "Compilation process was done."
