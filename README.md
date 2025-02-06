@@ -32,13 +32,7 @@ recognize lambda Linux executable. so you have to set next environment variables
 - set GOOS=linux
 - set GOARCH=amd64
 
-See the script "compile.bat"
-
-After you load the code zip file you have to add an environment varirable:
-
-- SecretName=ecommerce_secret
-
-
+See the scripts "compile.bat" or "compile.sh"
 
 ## AWS resources configuration
 
@@ -59,6 +53,11 @@ After you load the code zip file you have to add an environment varirable:
 ### Create Lambda
 
 Add trigger 
+
+When you are going to load the code zip file for your lambda function you will have to add next  environment varirables:
+
+- SecretName=ecommerce_secret
+
 
 In next section it will be described the process to configure an API gateway to get and request objects from and to S3. Also, you can check next documentation:
 
